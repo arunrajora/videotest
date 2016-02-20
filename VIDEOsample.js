@@ -1,9 +1,13 @@
 var global_username = '';
-
+$('.top1').hide();
+$('.container').hide();
 
 /*** After successful authentication, show user interface ***/
 
 var showUI = function() {
+	$('.top1').show();
+$('.container').show();
+$('.cssload-thecube').hide();
 	$('div#call').show();
 	$('form#userForm').css('display', 'none');
 	$('div#userInfo').css('display', 'inline');
@@ -70,7 +74,7 @@ var sessionName = 'sinchSessionVIDEO-' + sinchClient.applicationKey;
 /*** Check for valid session. NOTE: Deactivated by default to allow multiple browser-tabs with different users. ***/
 
 var sessionObj = JSON.parse(localStorage[sessionName] || '{}');
-if(sessionObj.userId) { 
+if(0 && sessionObj.userId) { 
 	sinchClient.start(sessionObj)
 		.then(function() {
 			global_username = sessionObj.userId;
@@ -284,6 +288,7 @@ $('button#logOut').on('click', function(event) {
 
 var handleError = function(error) {
 	//Enable buttons
+	return;
 	$('button#createUser').prop('disabled', false);
 	$('button#loginUser').prop('disabled', false);
 
